@@ -20,12 +20,16 @@ class PostsTableSeeder extends Seeder
 
         $faker = Faker::create();
 
-        foreach (range(1, 15) as $index) {
+        foreach (range(1, 200) as $index) {
             Post::create([
 
 
-                'title' => $faker->randomElement(['Post one', 'Post two', 'Post three']),
-                'content' => $faker->randomElement(['Hello this is po', 'Hello this io', 'Hello this is po']),
+                'title' => $faker->randomElement(['Post one', 'Post two', 'Post three', 'Post three', 'Post four', 'Post five', 'Post six', 'Post seven']),
+                'category' => $faker->randomElement(['News', 'Business', 'Entertainment', 'Sports']),
+                'date' => $faker->randomElement(['2023-11-20','2023-11-21','2023-11-029','2023-12-01','2023-12-02','2023-12-03','2023-12-04','2023-12-05','2023-12-06']),
+                'tag' => $faker->randomElement(['News', 'Business', 'Entertainment', 'Sports']),
+                'slug' => $faker->randomElement(['post_one', 'Post_two', 'Post_hree']),
+                'content' => $faker->randomElement(['Hello this is po', 'Hello this io', 'Hello this is po', 'Hello this is po', ' this is another one is po', 'Hello isabella is po', 'Another information this is po', 'More description this is po', 'Hello information is po']),
 
             ]);
         }

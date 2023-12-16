@@ -11,17 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('multiple_rows', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('category');
-            $table->date('date');
-            $table->string('tag');
-            $table->string('slug');
-            $table->text('content');
-
-            // this will create deleted_at field for softdelete
-            $table->softDeletes();
+            $table->string("name");
+            $table->string("email");
             $table->timestamps();
         });
     }
@@ -31,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('multiple_rows');
     }
 };
