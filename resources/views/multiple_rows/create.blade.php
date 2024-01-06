@@ -19,56 +19,35 @@
     </div>
 
     <div class="container">
-    <p>SPARTIE HTML </p>
-
-    {{-- {{ html()->form('PUT', '/post')->open() }} --}}
-    {{ html()->form('PUT')->route('multiple_rows.store') }}
-
-
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                {{ html()->span()->text('Enter Usernane'); }}
-                {{ html()->email('email')->placeholder('Your e-mail address')->class('form-control') }}
-            </div>
-
-        </div>
-
-        <div class="col-md-6">
-            <div class="form-group">
-                {{ html()->span()->text('Enter Email'); }}
-                {{ html()->email('email')->placeholder('Your e-mail address')->class('form-control') }}
-            </div>
-
-        </div>
-
-          <div class="col-md-6">
-            <div class="form-group">
-                {{ html()->button('SUBMIT')->class('btn btn-primary') }}
-
-            </div>
-
-        </div>
-
-        {{-- button --}}
-
-
-
-        
-    </div>
-    
-    {{ html()->form()->close() }}
-
-    <br><br><br><br>
-    
-  
-    
 
     <p>MULTIPLE ROWS </p>
 
 
-        
+    {{-- new code --}}
+
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th class="thead-dark">Name</th>
+            <th class="thead-dark">Email</th>
+            <th class="thead-dark" > <a  class="btn btn-success addRow"> + </a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" class="form-control" name="name[]" placeholder="Enter name"></td>
+            <td><input type="email" class="form-control" name="email[]" placeholder="Enter email"></td>
+            <td>  <a href="javascript:;" class="btn btn-danger deleteRow"> - </a> </td>
+          </tr>
+         
+        </tbody>
+      </table>
+      
+      
+
+    {{-- end of new code --}}
+
+{{--         
         <form id="dataForm" action="{{ route('multiple_rows.store') }}" method="POST">
             @csrf
             <div class="form-group">
@@ -84,17 +63,41 @@
             <button type="button" class="btn btn-primary" onclick="addRow()">Add Row</button>
         <button type="submit" class="btn btn-success">Save Data</button>
 
-        </form>
-
-
-
+        </form> --}}
 
     </div>
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+    {{-- Add and delete row : working new --}}
     <script>
-        function addRow() {
+        // add row
+        $('thead').on('click', '.addRow', function(){
+
+            var addNewRow =
+            'tbody' +
+             '<tr>' + 
+                '<td><input type="text" class="form-control" name="name[]" placeholder="Enter name"></td>' +
+                '<td><input type="text" class="form-control" name="email[]" placeholder="Enter Email"></td>' +
+                '<td><a href="javascript:;" class="btn btn-danger deleteRow"> - </a></td>' + 
+             '</tr>' ;
+
+        // append row
+        $('tbody').append(addNewRow);
+         
+        });
+
+        // delete row
+        $('tbody').on('click','.deleteRow', function(){
+
+            $(this).parent().parent().remove();
+        });
+
+    </script>
+    {{-- end of add and delete row --}}
+
+    <script>
+        function addRow2() {
             var newRow = `
             <div class="form-group">
                 <label for="name">Name</label>
@@ -111,6 +114,15 @@
         }
     </script>
 
+  
+
 </body>
 
 </html>
+
+
+
+
+
+
+

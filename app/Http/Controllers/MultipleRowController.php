@@ -40,7 +40,7 @@ class MultipleRowController extends Controller
             ]); 
         }
                 
-    //   dd($data);
+      dd($data);
 
     return redirect()->back();
     }
